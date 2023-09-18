@@ -7,6 +7,66 @@
 
   3) 브라우저에서 지원하는 자바스크립트 엔진
     - 사파리 (Safari) : JavaScript Core
-    - InternetExplorer (MS) : chakara
+    - InternetExplorer (MS) : chakra
+    - Firefox : Spider Monkey
     - Chrome : V8 엔진 (JIT Just-In-Time comilation)
-    
+    - Edge (MS) : Chakara --> 2021년도에 V8 엔진을 탑재함
+
+  4) 2009년 Ryan Dahl (라이언 달) Node.js 발표
+    - Deno : TypeScript 런타임 최초 개발자
+      -- JavaScript everywhere --
+
+  5) Node.js 는  Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임 환경입니다.
+    - JavaScript code outside a web browser
+
+  6) Browser vs Node.js
+    - Browser => 동적인 웹 애플리케이션 구현 가능
+                  -------------------------------
+                  Web API - Windows, Document, Ajax, JSON,...
+      
+    - Node.js => 서버와 서버간의 랜더링, 백엔드 서버 구현
+                프론트 엔드 개발 등..
+                ------------------------------------------
+                Node API
+
+2. Node.js 를 어떻게 공부할 것인가?
+  1) Node 구조를 정확히 이해하고 실행 방식을 기억한다.
+
+  2) Node 에서 제공하는 API 를 잘 사용할 줄 알아야 한다.
+    - API 는 자바스크립트 문법으로 작성되었으므로, 문법을 정확히 익히도록 한다.
+
+  3) 개발을 편리하게 지원해주는 프레임워크에 대해서 익힌다.
+    - Node.js --> Express, Rust
+    - Web API (브라우저) --> React, Vue, ..
+
+3. Node.js 특징 4가지
+  1) JavaScript Runtime
+    - V8 엔진 탑재 --> EcmaScript6 (ES6), Open API (Open Source), Node API...
+
+  2) Single Thread
+    - Process (Multi Thread) VS Thread
+
+  3) Non-Blocking (비동기적) IO (Input / Output)
+
+  4) Event - Driven
+
+4. 실행 환경 만들기
+  1) Node.JS 설치 : https://nodejs.org/ko
+
+  2) 터미널 툴 설치
+    - 윈도우용 터미널 : https://cmder.app/
+    - 맥용 터미널 : https://iterm2.com/
+  
+  3) 개발 툴 설치 : VSCode 등..
+  
+  4) Git 설치 및 GitHub 연동
+
+5. REPL ( 읽고, 처리하고, 출력하고, 반복한다 ) - 터미널 환경에서 실행
+  R : Read
+  E : Eval
+  P : Print
+  L : Loop
+
+6. console 로그에 대한 API 검색 및 활용 - [../code/2.console.js]
+
+7. this 정리 (global, object) - [../code/3.this.js]
