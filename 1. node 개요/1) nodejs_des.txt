@@ -1,0 +1,12 @@
+1. Node.js 란?
+  1) ~ 1995년 이전 : HTML + CSS --> 웹사이트 개발
+     ~ 1995년 이후 : HTML + CSS + JavaScript --> 웹사이트 개발
+
+  2) JavaScript
+    - Netscape 사에서 개발한 live script > Mocha > JavaScript 12월 발표
+
+  3) 브라우저에서 지원하는 자바스크립트 엔진
+    - 사파리 (Safari) : JavaScript Core
+    - InternetExplorer (MS) : chakara
+    - Chrome : V8 엔진 (JIT Just-In-Time comilation)
+    
