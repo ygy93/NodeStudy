@@ -70,3 +70,10 @@
 6. console 로그에 대한 API 검색 및 활용 - [../code/2.console.js]
 
 7. this 정리 (global, object) - [../code/3.this.js]
+
+8. export / require - node, Blocking
+    export / import - JavaScript, Non-Blocking
+
+    [npm init --yes] - package.json 생성 터미널 명령어 ( 안에 타입 모듈을 넣어주면 export, import 편히 사용 )
+
+9. os - 운영 체제 정보
