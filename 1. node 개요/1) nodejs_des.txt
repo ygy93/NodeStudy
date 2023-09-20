@@ -76,4 +76,10 @@
 
     [npm init --yes] - package.json 생성 터미널 명령어 ( 안에 타입 모듈을 넣어주면 export, import 편히 사용 )
 
-9. os - 운영 체제 정보
+9. Node API
+  1) os - 운영 체제 정보
+  2) Process
+  3) Path
+  4) FileSystem
+  5) Stream & Buffer
+    - 웹에 있는 데이터들을 잘게 쪼개서 조각씩 작게 보내는 것이 Stream ex) 넷플릭스, 디즈니플러스
