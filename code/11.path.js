@@ -21,7 +21,7 @@ console.log(path.dirname(__dirname));
 // extension
 console.log(path.extname(__filename));
 
-// parse
+// parse 확장자형태
 const parsed = path.parse(__filename); // 오브젝트 형태로 출력
 console.log(parsed);
 parsed.root;
