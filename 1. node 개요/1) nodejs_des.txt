@@ -91,3 +91,106 @@
   - NPX 는 다룬로드하여 저장하지 않고, 바로 실행
   - yarn 는 페이스북에서 라이브러리 커뮤니티로 npm 에서 제기되는 문제점을 해결하고자 만듦
     React 에서 주로 사용되며 NPM 과 호환이 됨
+
+11. HTTP / HTTPS
+  1) HTTP / HTTPS
+    - <HTTP> Hypertext Transfer Protocol (request - response protocol)
+
+              request(URL:http://www.naver.com/index.do) - dns (domain server)
+      client -------------------> server
+            <--------------------
+                response(HTML)
+                      |
+          데이터를 가로채는 경우 발생
+    
+
+    - <HTTPS> Hypertext Transfer Protocol Secure
+
+              request(URL:https://www.naver.com/index.do) - dns (domain server)
+      client -------------------> server
+            <--------------------
+                response(HTML) : SSL, TSL 등 공개키를 사용한 암호화되어 전송
+                      |
+          데이터를 가로채는 경우 감소
+
+  2) Status Codes
+    - 서버가 클라이언트가 요청한 처리상태를 숫자 (3자리 숫자, 5개 범위) 로 전송하는 코드
+
+      100 ~ : Informational
+        100 (Continue) - 요청이 정상적이며, 계속 진행 가능
+        102 (Processing) - 요청한 것을 아직 처리 중
+
+      200 ~ : Successful
+        200 (OK) - 성공 메시지
+        201 (Created) - 클라이언트가 요청한 리소스 생성이 성공함
+        204 (No Content) - 클라이언트 요청 처리 완료 전송할 콘텐츠는 없음
+
+      300 ~ : Redirection
+        301 (Mpved Permanently) - 요청한 페이지가 영구적으로 다른 곳으로 이동
+        302 (Found) - 요청한 페이지가 임시적으로 다른 곳으로 이동
+        303 (See Other) - 302 와 동일한 의미, 단 GET 방식만 사용 가능
+
+      400 ~ : Client error
+        400 (Bad Request) - 요청한 쿼리가 잘못된 경우
+          ex) https://www.naver.com/index.menu?id=book ? 부터 뒤에 내용을 쿼리 스트링
+          쿼리 스트링 : URL의 한 부분이며 요청하고자 하는 URL에 부가적인 정보를 포함하고 싶을 때 사용한다.
+        401 (Unauthorized) - 로그인 등 권한이 없는 클라이언트가 요청한 경우
+        403 (Forbidden) - 로그인한 사용자이지만 특정한 일을 수행할 권한이 없음
+        404 (Not Found) - 이 존재하지 않을 때
+        405 (Method Not Allowed) - 요청한 기능이 허용되지 않을 때
+
+      500 ~ : Server error
+        500 (Internal Server Error) - 서버에서 요청을 처리할 수 없는 경우 전송
+        502 (Bad Gateway) - 중간에 서버 요청을 어떻게 처리해야 할지 모르는 경우 전송
+        503 (Service Unavailable) - URL 에서 요청한 특정한 처리를 하기 위한 준비가 아직 안 되었을 때
+
+  3) Request
+    - URL : Uniform Resource Location
+    https://www.naver.com:80/course/font/css/search?a=2
+    ------  ---------------  ---------------------- ---
+    protocol  hostname            pathname          query(-string) : get 방식에서만 사용
+
+    - Method : 요청하는 방식 (GET / POST / PUT...)
+    https://developer.mozilla.org/ko/docs/Web/HTTP/methods
+
+      GET - get [200, 401, 403, 404, 405...]
+        : 서버에서 해당 리소스를 '가져오고 싶을 때'
+
+      POST - created [201, 401, 403, 404, 409...]
+        : URL 이 가리키는 곳에 무언가를 '생성하고 싶을 때', 전송하는 데이터의 용량이 큰 경우
+
+      PUT  - replace [200, 204, 305, 404, 405...]
+        : URL 에 있는 데이터를 '업데이트 하고 싶을 때'
+
+      DELETE - delete [200, 204, 305, 404, 405...]
+        : URL 에 있는 데이터를 '삭제하고 싶을 때'
+
+      PATCH - replace partially [200, 204, 305, 404, 405...]
+        : '부분적'으로 업데이트 하고 싶을 때
+
+      HEAD - get without body [200, 401, 403, 404, 405...]
+        : 데이터를 받지는 않고 'HEAD 만 받고 싶을 때'
+
+      OPTIONS - all supported methods for URL [200, 401, 403, 404, 405...]
+        : 해당 URL 에서 사용 가능한 모든 메소드 옵션을 알고 싶을 때
+
+      TRACE - echoes the received request [200, 401, 403, 404, 405...]
+        : 요청에 대한 서버의 반응 상태를 확인할 때
+
+    * GET/HEAD/OPTIONS/TRACE 메소드는 서버의 데이터를 읽기만 진행하고,
+      POST/PUT/DELETE/PATCH 데이터의 변경을 요청하는 메소드
+
+  4) HTTP Headers
+    - Stateless Protocol : HTTP 는 상태정보를 저장하지 않는 프로토콜이므로 서버에 대한 인증을 필요시 얻어야함
+    - Cookies & Session
+            request(get):http://www.naver.com/login
+      client -------------------> server
+            <-------------------
+                response : 로그인화면(HTML)
+
+              request (post) : 로그인요청 (id, pass)
+            ---------------------------------------> Server + DB
+            <----------------------------- 로그인 성공 : Session (key0)
+            URL + Session(key0) ------------------->
+  cookies(session (key0))
+  |--------> 브라우저
