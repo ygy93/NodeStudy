@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node Server Test~</title>
+</head>
+<body>
+  <h1>ScoreList</h1>
+  <table border="1">
+    <tr>
+      <td>NUMBER</td>
+      <td>NAME</td>
+      <td>GRADE</td>
+    </tr>
+    <% let index = 1;
+    scoreList.forEach(score => { %>
+    <tr>
+      <td><%= index++ %></td>
+      <td><%= score.name %></td>
+      <td><%= score.grade %></td>
+    </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
