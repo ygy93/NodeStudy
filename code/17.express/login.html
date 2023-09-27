@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>오제제 평일 테이블링</h1>
+  <!-- 폼을 서버로 넘어가는 값은 name 값이 넘어감 -->
+  <form name="loginForm" action="/login" method="post">
+    <ul>
+      <li>
+        <label for="id">id</label>
+        <input type="text" name="id" id="id">
+      </li>
+      <li>
+        <label for="pass">password</label>
+        <input type="password" name="pass" id="pass">
+      </li>
+      <li>
+        <button type="submit">login</button>
+        <button type="reset">cancle</button>
+      </li>
+    </ul>
+  </form>
+</body>
+</html>
