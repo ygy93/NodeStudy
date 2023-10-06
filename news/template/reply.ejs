@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reply</title>
+</head>
+<body>
+  <h1>ddddd</h1>
+  
+  <script>
+    fetch('/reply',
+          {
+            method : 'get',
+            headers : { 'content-type' : 'application/json' },
+            body : JSON.stringify({nid : '<%= newReply.nid %>'})
+          })
+    .then(data => {
+      console.log(data);
+    })
+  </script>
+</body>
+</html>

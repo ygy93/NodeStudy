@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsContents</title>
+</head>
+<body>
+  <h1><%= newsContent.title %></h1>
+  <div>
+    <img src="<%= newsContent.url %>" width="500px" height="500px" alt="">
+  </div>
+  <p><%= newsContent.content %></p>
+  <p style="text-align: right;">
+    <a href="/news"><button type="button">뉴스 리스트</button></a>
+  </p>
+  <p>댓글</p>
+  <hr>
+
+  <div id="replyForm">
+    <!-- <label>name : </label>
+    <input type="text" name="name" placeholder="내용을 입력해주세요."><br>
+    <label>content : </label> -->
+
+    <textarea name="replyContent" id="replyContent" placeholder="내용을 입력해주세요." style="width: 80%; resize:none;"></textarea><br>
+    <button type="button" id="btnRegReply">등록</button> <!-- onclick="replyReg()" -->
+  </div>
+
+  <div id="replyRegContent" name="replyRegContent"></div>
+
+  <%- include("./reply.ejs") %>
+
+  <script>
+    /* function replyReg(){
+      const replyCont = document.querySelector("#replyContent").value;
+
+      document.querySelector("#replyRegContent").insertAdjacentHTML('beforeend',`
+        <div>${replyCont}</div>
+      `)
+    } */
+    const btnRegReply = document.querySelector("#btnRegReply");
+    btnRegReply.addEventListener('click', e => {
+      const replyContent = document.querySelector("#replyContent").value;
+
+      fetch('/reply',
+            {
+              method : 'post',
+              headers : {'content-type' : 'application/json'},
+              body : JSON.stringify({nid : '<%= newsContent.nid %>', replyContent : replyContent}),
+            })
+      .then(result => {
+        if(result.status === 201){
+          window.location.reload();
+        }
+      })
+      .catch(console.error)
+    })
+
+  </script>
+</body>
+</html>

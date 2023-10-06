@@ -8,16 +8,18 @@ router.use(express.json());
 router.use(express.urlencoded()); // 제이슨이 깨지지않고 넘어오게 해줌
 
 // 1. GET : /dwitter - All Dwitter List
-router.get('/', (req, res, next) => {
+router
+.get('/', (req, res, next) => {
+  const renderList = dwitterList
   // index.ejs + 동적 데이터
-
   ejs
-  .renderFile('./template/index.ejs', {dwitterList})
+  .renderFile('./template/index.ejs', {renderList})
   .then((data) => {
     res.end(data);
   })
   .catch(console.error);
 })
+
 // 2. POST : /dwitter - Tweet create
 .post('/', (req, res, next) => {
   const { id, name, content } = req.body;
@@ -28,6 +30,20 @@ router.get('/', (req, res, next) => {
   // console.log(dwitterList);
   res.redirect('/dwitter'); // 위에서 한것들이 지워지고 다시 사용
 })
+
+// 3. GET : /dwitter?id=자신의아이디 - My Dwitter List, GET : /dwitter/:id
+.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+
+  const renderList = dwitterList.filter((dwitter) => dwitter.id === id);
+
+  ejs
+  .renderFile('./template/index.ejs', {renderList})
+  .then((data) => {
+    res.end(data);
+  })
+})
+
 // 4. PUT : /dwitter/:id - My Dwitter update
 .put('/', (req, res, next) => {
   const { pid, content } = req.body;
@@ -39,6 +55,7 @@ router.get('/', (req, res, next) => {
   console.log(dwitterList);
   res.status(204).send('update success');
 })
+
 // 5. DELETE : /dwitter/:id - My Dwitter delete
 .delete('/', (req, res, next) => {
   const { pid } = req.body;
@@ -47,5 +64,5 @@ router.get('/', (req, res, next) => {
   // console.log(dwitterList);
   res.status(204).send('delete successs');
 })
-// 3. GET : /dwitter?id=자신의아이디 - My Dwitter List, GET : /dwitter/:id
+
 export default router;

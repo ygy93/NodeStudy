@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEWS</title>
+</head>
+<body>
+  <h1>헤드라인 뉴스</h1>
+  <hr>
+  <div style="text-align: right;">
+    <button type="button" id="btnReg" onclick="toggleBtn()">뉴스 등록</button>
+  </div>
+  <!-- 뉴스 등록폼 : 토글처리, 이미지URL, 제목, 내용 -->
+  <form action="/news/register" method="post" id="regForm" style="display:none;">
+    URL : <input type="text" name="url" style="width: 70%;"><br>
+    Title : <input type="text" name="title" style="width: 70%;"><br>
+    Content : <textarea name="content" style="width: 70%;"></textarea><br>
+    <button type="submit" style="margin-top: 10px;">등록 완료</button>
+    <button type="reset">다시 쓰기</button>
+  </form>
+  
+  <ul>
+    <% newsList.forEach(news => { %>
+    <li style="list-style: none; border-bottom: 1px solid gray; height: 120px;">
+      <img src="<%= news.url %>"
+        style="width: 100px; height: 100px; float: left; padding-right: 10px;">
+      <p><a href="/news/<%= news.nid %>"><%= news.title %></a></p> <!-- get 방식 -->
+      <p style="width: 80%; height: 45px; overflow: hidden;"><%= news.content %></p>
+      <div style="text-align: right; display:flex; flex-direction: column; margin-right: 10px;">
+        <span><%= news.rdate %></span>
+      </div>
+    </li>
+    <% }) %>
+  </ul>
+  
+  <script>
+    function toggleBtn(){
+      const regForm = document.querySelector('#regForm');
+      const display = regForm.style.display;
+
+      if(display == 'none'){
+        regForm.style.display = 'block';
+      } else {
+        regForm.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
