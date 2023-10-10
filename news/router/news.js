@@ -33,9 +33,9 @@ router
   .then(data => {
     res.end(data);
   })
-  next()
+  .catch(console.error)
 })
-.get('/:nid', (req, res, next) => {
+/* .get('/:nid', (req, res, next) => {
   const { nid, replyContent } = req.params;
 
   const newReply = replyList.filter((reple) => reple.nid === parseInt(nid))[0];
@@ -45,6 +45,6 @@ router
   .then(data => {
     res.end(data);
   })
-})
+}) */
 
 export default router;

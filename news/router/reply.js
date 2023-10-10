@@ -12,20 +12,16 @@ router.use(express.urlencoded());
 router
 .post('/', (req, res, next) => {
   const { nid, replyContent } = req.body;
-  //console.log({ nid, replyContent });
-  replyList.push({ nid, replyContent });
-  res.status(201);
+
+  replyList.unshift({ nid, replyContent });
+  res.status(201).send('create success');
 })
 .get('/:nid', (req, res, next) => {
-  const { nid, replyContent } = req.params;
+  const { nid } = req.params;
 
-  const newReply = replyList.filter((reple) => reple.nid === parseInt(nid))[0];
+  const newReply = replyList.filter((reple) => reple.nid === nid);
 
-  ejs
-  .renderFile('./template/reply.ejs', {newReply})
-  .then(data => {
-    res.end(data);
-  })
+  res.json(newReply);
 })
 
 export default router;
