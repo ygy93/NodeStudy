@@ -1,0 +1,38 @@
+ul {
+  display:flex;
+}
+
+li {
+  list-style: none;
+  border:1px solid #999;
+  text-align: center;
+  line-height: 48px;
+  width: 160px;
+  height: 48px;
+  background-color: #eee;
+  cursor: pointer;
+  color:#999;
+  font-weight: 600;
+}
+
+li.on {
+  border:1px solid #000;
+  background-color: #fff;
+}
+
+li:hover {
+  border:1px solid #000;
+  background-color: #fff;
+}
+
+li:hover span {
+  color:#000;
+}
+
+li span.txt {
+  color:#000;
+}
+
+h2 span {
+  color:#196ab3;
+}
