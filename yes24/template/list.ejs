@@ -48,17 +48,21 @@
       })
       .catch(console.error);
     }
-
-
-    let li = document.querySelectorAll('li');
-    li.forEach(e => {
-      console.log(e);
-
-      e.addEventListener("click", v => {
-        e.classList.remove('on')
-        v.target.classList.add('on')
+    
+    /* 목록 클릭시 클래시 입혀서 색상 변경 */
+    document.querySelectorAll('li').forEach(v => {
+      v.addEventListener('click',e=>{
+        document.querySelectorAll('li').forEach(z => {
+          z.classList.remove('on')
+        })
+        e.target.classList.add('on');
       })
     })
+
+
+      
+  
+    
   </script>
 </body>
 </html>
