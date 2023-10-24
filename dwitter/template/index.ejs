@@ -20,29 +20,29 @@
     <button type="submit">Post</button>
   </form>
 
-  <% renderList.forEach((dwitter) => { %>
+  <% for(i = 0; i < list.length; i++){ %>
   <div style="border:1px solid gray; margin-top: 10px; padding: 6px;">
-    <%= dwitter.pid %>
-    <span style="float:right; cursor: pointer;" onclick="remove('<%= dwitter.pid %>')">삭제&nbsp;&nbsp;</span>
-    <span style="float:right; cursor: pointer;" onclick="updateToggle('<%= dwitter.pid %>')">편집&nbsp;&nbsp;</span>
+    <%= list[i].id %>
+    <span style="float:right; cursor: pointer;" onclick="remove('<%= list[i].id %>')">삭제&nbsp;&nbsp;</span>
+    <span style="float:right; cursor: pointer;" onclick="updateToggle('<%= list[i].id %>')">편집&nbsp;&nbsp;</span>
     <img style="clear:both;" src="https://lh3.googleusercontent.com/ogw/AKPQZvxyupxtXCH8K-Twu6cO5FBJRIOnSQ2DgQsGpxqJ=s32-c-mo" alt="dex">
-    <span>[<%= dwitter.name %>]</span>
-    <span><a href="/dwitter/<%= dwitter.id %>">@<%= dwitter.id %></a></span>
-    <span><%= dwitter.date %></span>
+    <span>[<%= list[i].name %>]</span>
+    <span><a href="/dwitter/<%= list[i].id %>">@<%= list[i].id %></a></span>
+    <span><%= list[i].date %></span>
     <div>
-      <%= dwitter.content %>
+      <%= list[i].content %>
     </div>
-    <div id="updateForm_<%= dwitter.pid %>" style="display:none;">
-      <input type="text" id="content_<%= dwitter.pid %>" style="width: 80%; background-color: lightcyan;">
-      <button type="button" onclick="update('<%= dwitter.pid %>')">Update</button>
+    <div id="updateForm_<%= list[i].id %>" style="display:none;">
+      <input type="text" id="content_<%= list[i].id %>" style="width: 80%; background-color: lightcyan;">
+      <button type="button" onclick="update('<%= list[i].id %>')">Update</button>
     </div>
   </div>
-  <% }); %>
+  <% } %>
 
   <script>
-    function updateToggle(pid){
-      const updateForm = document.querySelector("#updateForm_" + pid);
-      const contentText = document.querySelector("#content_" + pid);
+    function updateToggle(id){
+      const updateForm = document.querySelector("#updateForm_" + id);
+      const contentText = document.querySelector("#content_" + id);
       const display = updateForm.style.display;
 
       if(display == "none"){
@@ -54,14 +54,14 @@
       }
     }
 
-    function update(pid){
-      const updateText = document.querySelector("#content_" + pid).value;
+    function update(id){
+      const updateText = document.querySelector("#content_" + id).value;
       
       fetch('/dwitter', /* /dwitter/:id 를 줘야하지만, body 에서 put 방식으로 넘기기에 생략 가능 */
             { 
               method : 'put', 
               headers : {'content-type' : 'application/json'},
-              body : JSON.stringify({pid : pid, content : updateText}),
+              body : JSON.stringify({id : id, content : updateText}),
             })
       .then(result => {
         if(result.status === 204){
@@ -73,12 +73,12 @@
       .finally()
     }
 
-    function remove(pid){
+    function remove(id){
       fetch('/dwitter',
             {
               method : 'delete',
               headers : {'content-type' : 'application/json'},
-              body : JSON.stringify({pid : pid}),
+              body : JSON.stringify({id : id}),
             })
       .then(result => {
         if(result.status === 204){

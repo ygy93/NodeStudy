@@ -21,17 +21,17 @@
   </form>
   
   <ul>
-    <% newsList.forEach(news => { %>
+    <% for(let i = 0; i < list.length; i++) { %>
     <li style="list-style: none; border-bottom: 1px solid gray; height: 120px;">
-      <img src="<%= news.url %>"
+      <img src="<%= list[i].url %>"
         style="width: 100px; height: 100px; float: left; padding-right: 10px;">
-      <p><a href="/news/<%= news.nid %>"><%= news.title %></a></p> <!-- get 방식 -->
-      <p style="width: 80%; height: 45px; overflow: hidden;"><%= news.content %></p>
+      <p><a href="/news/<%= list[i].nid %>"><%= list[i].title %></a></p> <!-- get 방식 -->
+      <p style="width: 80%; height: 45px; overflow: hidden;"><%= list[i].content %></p>
       <div style="text-align: right; display:flex; flex-direction: column; margin-right: 10px;">
-        <span><%= news.rdate %></span>
+        <span><%= list[i].rdate %></span>
       </div>
     </li>
-    <% }) %>
+    <% } %>
   </ul>
   
   <script>

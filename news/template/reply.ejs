@@ -11,7 +11,8 @@
 
   <div id="replyForm">
     <textarea name="replyContent" id="replyContent" placeholder="내용을 입력해주세요." style="width: 80%; resize:none;"></textarea><br>
-    <button type="button" id="btnRegReply" onclick="replyReg('<%= newsContent.nid %>')">등록</button> <!-- onclick="replyReg()" -->
+    <button type="button" id="btnRegReply" onclick="replyReg('<%= newsContent.nid %>')">댓글등록</button> <!-- onclick="replyReg()" -->
+    <button type="button" onclick="deleteReply('<%= newsContent.nid %>')">댓글삭제</button>
   </div>
 
   <ul id="replyRegContent" name="replyRegContent" style="margin-top: 10px;"></ul>
@@ -23,9 +24,11 @@
       fetch('/reply/' + nid)
       .then(response => response.json())
       .then((newReply) => {
+        // alert(JSON.stringify(newReply))
+
         const output = `
           ${newReply.map(reply => `
-            <li>${reply.replyContent}</li>
+            <li>${reply.content}</li>
           `).join('\n')}
         `
       document.querySelector('#replyRegContent').innerHTML = output;
@@ -46,13 +49,30 @@
             {
               method : 'post',
               headers : { 'content-type' : 'application/json'},
-              body : JSON.stringify({ nid : nid, replyContent : replyContent})
+              body : JSON.stringify({ nid : nid, content : replyContent})
             })
       .then(response => {
         if(response.status === 201){
           window.location.reload(); // reply.js 재호출 --> replyList 함수 실행
         }
       })
+    }
+
+
+    // 댓글 삭제 처리
+    function deleteReply(nid){
+      fetch('/reply',
+            {
+              method : 'delete',
+              headers : {'content-type' : 'application/json'},
+              body : JSON.stringify({nid : nid}),
+            })
+      .then(result => {
+        if(result.status === 204){
+          window.location.reload();
+        }
+      })
+      .catch(console.error)
     }
 
     /* document.querySelector("#replyRegContent").insertAdjacentHTML('beforeend',`
