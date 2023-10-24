@@ -19,22 +19,22 @@
   <div id="list"></div>
 
   <script>
-    bestSellerCategory('BestSeller', '1');
+    
     function bestSellerCategory(categoryName, page){
       const url = '/' + categoryName + '/' + page;
 
       fetch(url)
       .then(response => response.json())
       .then((bestSellerList) => {
-        // alert(JSON.stringify(bestSellerList));
 
         const output = `
-          <h2 class="title">${bestSellerList.title}</h2>
+          <h2 class="title">${bestSellerList[0].bs_title}</h2>
           <hr>
 
-          ${bestSellerList.list.map(book => `
+          ${bestSellerList.map(book => `
             <div>
               <h2>[도서] ${book.bname}</h2>
+              <img src="${book.img}" alt="bookimg">
               <p><span>${book.author} 저자 | </span> <span> ${book.translator} 역자 | </span>
                 <span>${book.publisher} 출판사 | </span><span> ${book.pdate}</span></p>
               <p><h3 style="display:inline-block;">${book.price}</h3><span> 원 (판매가)</span></p>
@@ -43,7 +43,7 @@
               <p> : ${book.bname_comment}</p>
             </div>
             <hr>
-            `).join('')}` // 조인을 넣으면 , 가 사라지는데 원인은 map 을 사용하여 배열로 만들어서 자동으로 , 가 생겼다. 왜 자동일까?
+            `)}` // 조인을 넣으면 , 가 사라지는데 원인은 map 을 사용하여 배열로 만들어서 자동으로 , 가 생겼다. 왜 자동일까?
         document.querySelector("#list").innerHTML = output;
       })
       .catch(console.error);
@@ -59,6 +59,7 @@
       })
     })
 
+    bestSellerCategory('BestSeller', '1');
 
       
   
