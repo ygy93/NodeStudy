@@ -10,8 +10,29 @@
   <ul>
     <li><a href="/dwitter">All Dwitter</a></li>
     <li><a href="#">My Dwitter</a></li>
-    <li><a href="#">Login</a></li>
+    <li><a href="#" onclick="loginToggle()">Login</a>
+      / <a href="#" onclick="signUpToggle()">Signup</a>
+    </li>
   </ul>
+  <br>
+  <form name="loginForm" action="/login" method="post" id="loginForm">
+    <p>Login Form</p>
+    <input type="text" name="id" id="id" placeholder="id 입력" style="width: 50%; background-color: lightcyan;">
+    <input type="password" name="pass" id="pass" placeholder="password 입력" style="width: 50%; background-color: lightcyan;">
+    <button type="submit">Login</button>
+    <button type="reset">Reset</button>
+  </form>
+  <br>
+  <form name="signUpForm" action="/signup" method="post" id="signUpForm" style="display:none;">
+    <p>signUp Form</p>
+    <input type="text" name="id" id="sid" placeholder="id 입력" style="width: 50%; background-color: bisque;">
+    <input type="password" name="pass" id="spass" placeholder="password 입력" style="width: 50%; background-color: bisque;">
+    <input type="text" name="name" id="name" placeholder="이름 입력" style="width: 50%; background-color: bisque;">
+    <textarea name="content" id="content" rows="10" placeholder="content" style="width: 70%; resize:none; margin-top: 5px; background-color: bisque;"></textarea>
+    <button type="submit">Login</button>
+    <button type="reset">Reset</button>
+  </form>
+  <br>
 
   <form action="/dwitter" method="post" name="contentForm" style="border:2px solid gray; padding: 6px;">
     <input type="text" name="id" placeholder="id">
@@ -86,6 +107,42 @@
         }
       })
       .catch(console.error)
+    }
+
+    function loginToggle() {
+      const loginForm = document.querySelector('#loginForm');
+      const id = document.querySelector('#id');
+      const pass = document.querySelector('#pass');
+      const display = loginForm.style.display;
+
+      if(display == 'none'){
+        loginForm.style.display = 'block';
+        id.focus();
+      } else {
+        loginForm.style.display = 'none';
+        id.value = "";
+        pass.value = "";
+      }
+    }
+
+    function signUpToggle(){
+      const signUpForm = document.querySelector('#signUpForm');
+      const sid = document.querySelector('#sid');
+      const spass = document.querySelector('#spass');
+      const name = document.querySelector('#name');
+      const content = document.querySelector('#content');
+      const display = signUpForm.style.display;
+
+      if(display == 'none'){
+        signUpForm.style.display = 'block';
+        sid.focus();
+      } else {
+        signUpForm.style.display = 'none';
+        sid.value = "";
+        spass.value = "";
+        name.value = "";
+        content = "";
+      }
     }
   </script>
 </body>

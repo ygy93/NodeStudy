@@ -1,14 +1,16 @@
 import mysql from 'mysql2';
 
-const dbInfo = {
+const pool = mysql.createPool ({
   host : 'localhost',
   port : '3306',
   user : 'root',
   password : '1234',
   database : 'hrdb2019'
-}
+})
 
-const db = {
+export const db = pool.promise();
+
+/* const db = {
   init : function () {
     return mysql.createConnection(dbInfo);
   },
@@ -21,4 +23,4 @@ const db = {
   }
 };
 
-export default db;
+export default db; */

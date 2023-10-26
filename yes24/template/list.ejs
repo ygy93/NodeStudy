@@ -19,6 +19,17 @@
   <div id="list"></div>
 
   <script>
+    /* 목록 클릭시 클래시 입혀서 색상 변경 */
+    document.querySelectorAll('li').forEach(v => {
+      v.addEventListener('click',e=>{
+        document.querySelectorAll('li').forEach(z => {
+          z.classList.remove('on')
+        })
+        e.target.classList.add('on');
+      })
+    })
+
+    bestSellerCategory('BestSeller', '1');
     
     function bestSellerCategory(categoryName, page){
       const url = '/' + categoryName + '/' + page;
@@ -26,7 +37,7 @@
       fetch(url)
       .then(response => response.json())
       .then((bestSellerList) => {
-
+        
         const output = `
           <h2 class="title">${bestSellerList[0].bs_title}</h2>
           <hr>
@@ -46,21 +57,8 @@
             `)}` // 조인을 넣으면 , 가 사라지는데 원인은 map 을 사용하여 배열로 만들어서 자동으로 , 가 생겼다. 왜 자동일까?
         document.querySelector("#list").innerHTML = output;
       })
-      .catch(console.error);
+      .catch();
     }
-    
-    /* 목록 클릭시 클래시 입혀서 색상 변경 */
-    document.querySelectorAll('li').forEach(v => {
-      v.addEventListener('click',e=>{
-        document.querySelectorAll('li').forEach(z => {
-          z.classList.remove('on')
-        })
-        e.target.classList.add('on');
-      })
-    })
-
-    bestSellerCategory('BestSeller', '1');
-
       
   
     
