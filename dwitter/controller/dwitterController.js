@@ -2,6 +2,7 @@
 //                  결과 전송
 import * as dwitterRepository from '../repository/dwitterRepository.js';
 import ejs from 'ejs';
+import jwt from 'jsonwebtoken';
 
 /* getAll */
 export async function getAll(req, res) {
@@ -79,10 +80,27 @@ export async function getDwitter(req, res, next) {
 
 /* update */
 export async function update(req, res, next) {
-  const { id, content } = req.body;
+  // 로그인한 회원만 업데이트 가능하도록 체크
+  // 1. 토큰 가져오기
+  const token = req.cookies.x_auth;
 
-  const result = await dwitterRepository.update(id, content);
-  if(result === 'success') res.status(204).send('update success!');
+  try {
+    const verify = jwt.verify(token, 'XLlH0CHl3_3N')
+    // console.log(verify);
+    const { id, content } = req.body;
+    
+    if(id === verify.id) {
+      const result = await dwitterRepository.update(id, content);
+      if(result === 'success') res.status(204).send('update success!');
+    } else {
+      res.status(400).send('update fail!');
+    }
+
+  } catch {
+    console.log(error);
+  }
+
+  
 
   // const sql = 'update dwitter set content = ? where id = ?';
 

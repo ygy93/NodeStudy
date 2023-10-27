@@ -30,7 +30,7 @@ export async function getBsPage(req, res, next) {
 
 /* getDbs 일별베스트셀러 */
 export async function getDbs(req, res, next) {
-  const rows = await yes24Repository.getDbs();
+  const rows = await yes24Repository.getDbs('dbs');
 
   res.json(rows)
   

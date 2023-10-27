@@ -12,9 +12,9 @@ export async function getBsPage() {
 }
 
 
-export async function getDbs() {
+export async function getDbs(bs_id) {
   return db
-  .execute("select * from yes24_books yb inner join yes24_bs_category yc on yb.bs_id = yc.bs_id where yb.bs_id = 'dbs';")
+  .execute("select * from yes24_books yb inner join yes24_bs_category yc on yb.bs_id = yc.bs_id where yb.bs_id = ?;",[bs_id])
   .then((result) => result[0])
 }
 

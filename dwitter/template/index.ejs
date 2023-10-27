@@ -15,7 +15,7 @@
     </li>
   </ul>
   <br>
-  <form name="loginForm" action="/login" method="post" id="loginForm">
+  <form name="loginForm" action="/login" method="post" id="loginForm" style="display:none;">
     <p>Login Form</p>
     <input type="text" name="id" id="id" placeholder="id 입력" style="width: 50%; background-color: lightcyan;">
     <input type="password" name="pass" id="pass" placeholder="password 입력" style="width: 50%; background-color: lightcyan;">
@@ -88,6 +88,8 @@
         if(result.status === 204){
           // alert('업데이트 성공~');
           window.location.reload(); // 윈도우 새로고침
+        } else if (result.status === 400) {
+          alert('로그인 후 수정 가능합니다');
         }
       })
       .catch(console.error)
