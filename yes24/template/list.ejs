@@ -7,6 +7,14 @@
   <title>Document</title>
 </head>
 <body>
+  <h1><img src="https://image.aladin.co.kr/img/header/2023/aladin_logo.jpg" alt="logo"></h1>
+  <ul class="join">
+    <li><a href="/BestSeller">Home</a></li>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/signup">Signup</a></li>
+  </ul>
+  <br>
+
   <ul>
     <li onclick="bestSellerCategory('BestSeller', '1')"><span class="txt">종합</span></li>
     <li onclick="bestSellerCategory('RealTimeSeller', '1')"><span class="txt">실시간</span></li>
@@ -17,6 +25,7 @@
   </ul>
 
   <div id="list"></div>
+
 
   <script>
     /* 목록 클릭시 클래시 입혀서 색상 변경 */
@@ -59,8 +68,6 @@
       })
       .catch();
     }
-      
-  
     
   </script>
 </body>

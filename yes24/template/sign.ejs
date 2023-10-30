@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="list.css">
+  <title>SIGN 회원가입</title>
+</head>
+<body>
+  <form name="signUpForm" action="/signup" method="post" id="signUpForm">
+    <p>signUp Form</p>
+    <input type="text" name="id" id="sid" placeholder="id 입력" style="width: 50%; background-color: bisque;">
+    <input type="password" name="pass" id="spass" placeholder="password 입력" style="width: 50%; background-color: bisque;">
+    <input type="text" name="name" id="name" placeholder="이름 입력" style="width: 50%; background-color: bisque;">
+    <textarea name="content" id="content" rows="10" placeholder="content" style="width: 70%; resize:none; margin-top: 5px; background-color: bisque;"></textarea>
+    <div class="formBtn">
+      <button type="submit">Login</button>
+      <button type="reset">Reset</button>
+    </div>
+  </form>
+  <br>
+</body>
+</html>

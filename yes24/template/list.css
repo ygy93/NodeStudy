@@ -1,5 +1,10 @@
+h1 {
+  text-align: center;
+}
+
 ul {
   display:flex;
+  justify-content: center;
 }
 
 li {
@@ -13,6 +18,11 @@ li {
   cursor: pointer;
   color:#999;
   font-weight: 600;
+}
+
+a {
+  display:inline-block;
+  width: 100%;
 }
 
 li.on {
@@ -35,4 +45,22 @@ li span.txt {
 
 h2 span {
   color:#196ab3;
+}
+
+.join {
+  justify-content: flex-end;
+}
+
+form {
+  text-align: center;
+}
+
+p {
+  font-weight: 600;
+  font-size: 2em;
+}
+
+.formBtn {
+  flex-wrap: wrap;
+  margin-top: 6px;
 }
