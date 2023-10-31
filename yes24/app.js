@@ -7,6 +7,7 @@ import SaleSellerRouter from './router/saleSeller.js';
 import SteadySellerRouter from './router/steadySeller.js';
 import cookies from 'cookie-parser';
 import signUpRouter from './router/signUpRouter.js';
+import loginRouter from './router/loginRouter.js';
 
 const app = express();
 
@@ -19,7 +20,8 @@ app.use('/MonthWeekSeller', MonthWeekSellerRouter)
 app.use('/SaleSeller', SaleSellerRouter)
 app.use('/SteadySeller', SteadySellerRouter)
 
-app.use('signup', signUpRouter)
+app.use('/signup', signUpRouter)
+app.use('/login', loginRouter)
 
 app.use(express.static('template'));
 

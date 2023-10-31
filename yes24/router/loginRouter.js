@@ -1,5 +1,5 @@
 import express from 'express';
-import * as signUpController from '../controller/signUpController.js';
+import * as loginController from '../controller/loginController.js';
 
 const router = express.Router();
 
@@ -7,8 +7,7 @@ router.use(express.json());
 router.use(express.urlencoded());
 
 router
-.get('/', signUpController.signUp)
-
-.post('/', signUpController.signJoin)
+.get('/', loginController.login)
+.post('/', loginController.loginPage)
 
 export default router;

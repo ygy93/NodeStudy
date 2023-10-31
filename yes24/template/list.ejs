@@ -63,7 +63,7 @@
               <p> : ${book.bname_comment}</p>
             </div>
             <hr>
-            `)}` // 조인을 넣으면 , 가 사라지는데 원인은 map 을 사용하여 배열로 만들어서 자동으로 , 가 생겼다. 왜 자동일까?
+            `).join('')}` // 조인을 넣으면 , 가 사라지는데 원인은 map 을 사용하여 배열로 만들어서 자동으로 , 가 생겼다. 왜 자동일까?
         document.querySelector("#list").innerHTML = output;
       })
       .catch();
